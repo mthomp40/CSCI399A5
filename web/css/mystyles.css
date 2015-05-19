@@ -24,40 +24,8 @@ h2 { font-size: 1.4em; }
     font-family: Verdana,Arial,Helvetica,sans-serif;
 }
 
-#navbar {
-    border-color:#8c489f;
-    border-style:solid;
-    border-top-width:2px;
-    border-bottom-width:2px;
-    background-color:#f1f0ff;
-    min-height:48px;
-}
-
-#navbar ul {
-    max-width:600px;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:12px;
-}
-
-#navbar li {
-    list-style-type: none;
-    font-size:1.2em;
-    display:inline;
-    padding:8px;
-
-    margin-right:8px;
-    border-width:2px;
-    border-style:solid;
-    border-radius:20px;
-    border-color:#c3c3e5;
-    min-width:125px;
-}
-
-#navbar li a:active {
-    text-decoration: none;
-    color:#8c489f;
-    background-color:#c3c3e5;
+fieldset {
+    
 }
 #appform {
     padding-left:8px;

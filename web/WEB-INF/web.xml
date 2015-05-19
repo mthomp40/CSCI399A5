@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>HeaderServlet</servlet-name>
-        <servlet-class>entertainment_centre.HeaderServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>entertainment_centre.SearchServlet</servlet-class>
     </servlet>
@@ -44,13 +40,54 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HeaderServlet</servlet-name>
-        <url-pattern>/HeaderServlet</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <security-constraint>
+        <display-name>Schedule Event constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Schedule constraints</web-resource-name>
+            <description>Schedule description</description>
+            <url-pattern>/ScheduleServlet</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>who can schedule events</description>
+            <role-name>scheduler</role-name>
+            <role-name>detailer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Detailing constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Event info constraints</web-resource-name>
+            <description>Event info description</description>
+            <url-pattern>/AddInfoServlet</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>who can add event supp data</description>
+            <role-name>scheduler</role-name>
+            <role-name>detailer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>userrealm</realm-name>
+        <form-login-config>
+            <form-login-page>/loginpage.html</form-login-page>
+            <form-error-page>/errorpage.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>can schedule events</description>
+        <role-name>scheduler</role-name>
+    </security-role>
+    <security-role>
+        <description>can detail events</description>
+        <role-name>detailer</role-name>
+    </security-role>
 </web-app>
