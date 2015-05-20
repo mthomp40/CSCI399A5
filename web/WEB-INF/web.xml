@@ -20,6 +20,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>entertainment_centre.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddInfoServlet</servlet-name>
+        <servlet-class>entertainment_centre.AddInfoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/SearchServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddInfoServlet</servlet-name>
+        <url-pattern>/AddInfoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

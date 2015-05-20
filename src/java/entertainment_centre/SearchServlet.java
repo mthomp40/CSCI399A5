@@ -34,6 +34,11 @@ public class SearchServlet extends HttpServlet {
             out.println("<p>Entertainment Centre</p>");
             out.println("</div>");
             out.println("</div>");
+            if (request.getUserPrincipal() != null) {
+                out.println("<div id=\"loggedin\">");
+                out.println("<h2>Logged in</h2>");
+                out.println("<p>Currently logged in as " + request.getUserPrincipal().getName() + ".&nbsp<a href=\"LogoutServlet\">Logout</a></p></div>");
+            }
             out.println("<div id=\"content\">");
             out.println("<form method=\"POST\" onsubmit=\"return doCheckDates()\">");
             out.println("<fieldset>");
@@ -103,7 +108,6 @@ public class SearchServlet extends HttpServlet {
                 Connection dbcon = ds.getConnection();
                 Statement stmnt = dbcon.createStatement();
                 ResultSet rs = stmnt.executeQuery("select * from ecpresentations");
-
                 out.println("<ul>");
                 while (rs.next()) {
                     out.println("<li>");
@@ -115,7 +119,7 @@ public class SearchServlet extends HttpServlet {
                 rs.close();
                 out.println("</ul>");
             } catch (NamingException | SQLException ex) {
-                out.println("<p>Out: " + ex + "</p>");
+                
             }
             out.println("</div>");
             out.println("</body>");
