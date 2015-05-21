@@ -3,7 +3,6 @@ package entertainment_centre;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -102,6 +101,8 @@ public class ScheduleServlet extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception e) {
+            response.sendRedirect("Errors.html");
         }
     }
 
@@ -173,13 +174,7 @@ public class ScheduleServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } catch (NamingException | SQLException | ParseException ex) {
-            Logger.getLogger(ScheduleServlet.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("Errors.html");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

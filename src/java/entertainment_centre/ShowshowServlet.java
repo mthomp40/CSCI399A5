@@ -74,17 +74,16 @@ public class ShowshowServlet extends HttpServlet {
                 while (rs.next()) {
                     String details = rs.getString("details");
                     String picy = rs.getString("picy");
-                    out.println("<tr><td><img width=\"200\" src=\"" + picy + "\"></td><td>" + details + "</td></tr>");
+                    out.println("<tr><td><img width=\"200\" src=\"" + picy + "\"></td><td>" + details + "</td></tr><br><br>");
                 }
-                out.println("</ul");
-
+                out.println("</table>");
             } catch (NamingException | SQLException ex) {
-                out.println("<p>Out: " + ex + "</p>");
+                response.sendRedirect("Errors.html");
             } finally {
                 try {
                     dbcon.close();
                 } catch (Exception e) {
-
+                    response.sendRedirect("Errors.html");
                 }
             }
             out.println("</div>");
@@ -98,10 +97,4 @@ public class ShowshowServlet extends HttpServlet {
             throws ServletException, IOException {
 
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

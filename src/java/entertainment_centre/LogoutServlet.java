@@ -39,6 +39,8 @@ public class LogoutServlet extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception e) {
+            response.sendRedirect("Errors.html");
         }
         request.getSession().invalidate();
     }
@@ -46,12 +48,6 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO
-    }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
-
 }

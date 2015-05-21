@@ -77,6 +77,8 @@ public class SearchServlet extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
+        } catch (Exception e) {
+            response.sendRedirect("Errors.html");
         }
     }
 
@@ -102,34 +104,26 @@ public class SearchServlet extends HttpServlet {
             out.println("</div>");
             out.println("<div id=\"content\">");
             out.println("<h1 align=\"center\">Shows on at the Entertainment Centre</h1>");
-            try {
-                Context initialContext = new InitialContext();
-                DataSource ds = (DataSource) initialContext.lookup("jdbc/myDatasource");
-                Connection dbcon = ds.getConnection();
-                Statement stmnt = dbcon.createStatement();
-                ResultSet rs = stmnt.executeQuery("select * from ecpresentations");
-                out.println("<ul>");
-                while (rs.next()) {
-                    out.println("<li>");
-                    String id = rs.getString("mykey");
-                    String title = rs.getString("title");
-                    out.println("<a href=\"ShowshowServlet?id=" + id + "\">" + title + "</a>");
-                    out.println("</li>");
-                }
-                rs.close();
-                out.println("</ul>");
-            } catch (NamingException | SQLException ex) {
-                
+            Context initialContext = new InitialContext();
+            DataSource ds = (DataSource) initialContext.lookup("jdbc/myDatasource");
+            Connection dbcon = ds.getConnection();
+            Statement stmnt = dbcon.createStatement();
+            ResultSet rs = stmnt.executeQuery("select * from ecpresentations");
+            out.println("<ul>");
+            while (rs.next()) {
+                out.println("<li>");
+                String id = rs.getString("mykey");
+                String title = rs.getString("title");
+                out.println("<a href=\"ShowshowServlet?id=" + id + "\">" + title + "</a>");
+                out.println("</li>");
             }
+            rs.close();
+            out.println("</ul>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
+        } catch (NamingException | SQLException ex) {
+            response.sendRedirect("Errors.html");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
